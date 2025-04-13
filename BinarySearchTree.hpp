@@ -333,7 +333,10 @@ private:
   // NOTE:    This function must run in constant time.
   //          No iteration or recursion is allowed.
   static bool empty_impl(const Node *node) {
-    assert(false);
+    if(!node){
+      return true;
+    }
+    return false;
   }
 
   // EFFECTS: Returns the size of the tree rooted at 'node', which is the
@@ -341,7 +344,10 @@ private:
   //          tree is 0.
   // NOTE:    This function must be tree recursive.
   static int size_impl(const Node *node) {
-    assert(false);
+    if(!node){
+      return 0;
+    }
+    return 1+size_impl(node->right)+size_impl(node->left);
   }
 
   // EFFECTS: Returns the height of the tree rooted at 'node', which is the
