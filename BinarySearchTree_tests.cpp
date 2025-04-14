@@ -119,4 +119,45 @@ TEST(equalsoperator){
     ++it;
     ASSERT_TRUE(it != it2);
 }
+TEST(copyCtor){
+    BinarySearchTree<int> t;
+    t.insert(6);
+    t.insert(3);
+    t.insert(7);
+    BinarySearchTree<int> t2(t);
+    ASSERT_EQUAL(t2.size(), 3);
+    ASSERT_EQUAL(t2.height(), 2);
+    ASSERT_EQUAL(*t2.min_element(), 3);
+    ASSERT_TRUE(t2.check_sorting_invariant());
+}
+TEST(assignment){
+    BinarySearchTree<int> t;
+    t.insert(6);
+    t.insert(3);
+    t.insert(7);
+    BinarySearchTree<int> t2;
+    t2 = t;
+    ASSERT_EQUAL(t2.size(), 3);
+    ASSERT_EQUAL(t2.height(), 2);
+    ASSERT_EQUAL(*t2.min_element(), 3);
+   
+    BinarySearchTree<int> t3;
+    t3.insert(1);
+    t3.insert(69);
+    t3 = t;
+    ASSERT_EQUAL(t3.size(), 3);
+    ASSERT_EQUAL(t3.height(), 2);
+    ASSERT_EQUAL(*t3.min_element(), 3);
+    ASSERT_TRUE(t3.check_sorting_invariant());
+}
+TEST(empty){
+    BinarySearchTree<int> t;
+    t.insert(6);
+    t.insert(3);
+    t.insert(7);
+    ASSERT_FALSE(t.empty());
+    BinarySearchTree<int> t2;
+    ASSERT_TRUE(t2.empty());
+}
+
 TEST_MAIN()
