@@ -46,6 +46,8 @@ TEST(printTree){
     t2.insert(9);
     t2.insert(6);
     t2.traverse_inorder(std::cout);
+    cout << endl;
+    t2.traverse_preorder(std::cout);
     
     
 }

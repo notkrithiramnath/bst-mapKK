@@ -525,7 +525,12 @@ private:
   //       See https://en.wikipedia.org/wiki/Tree_traversal#Pre-order
   //       for the definition of a pre-order traversal.
   static void traverse_preorder_impl(const Node *node, std::ostream &os) {
-    assert(false);
+    if(!node){
+      return;
+    }
+    os << node->datum << " ";
+    traverse_preorder_impl(node->left,os);
+    traverse_preorder_impl(node->right,os);
   }
 
   // EFFECTS : Returns a pointer to the Node containing the smallest element
