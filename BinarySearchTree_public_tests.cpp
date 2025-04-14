@@ -3,7 +3,8 @@
 #include <sstream>
 
 using namespace std;
-
+// make BinarySearchTree_public_tests.exe
+// ./BinarySearchTree_public_tests.exe
 
 TEST(bst_public_test) {
   BinarySearchTree<int> tree;
