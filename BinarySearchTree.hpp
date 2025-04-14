@@ -408,8 +408,15 @@ private:
     if(!less(query,node->datum) && !less(node->datum,query)){
       return node;
     }
-    return find_impl(node->left,query,less);
-    return find_impl(node->right,query,less);
+    if(less(query,node->datum)){
+      
+      return find_impl(node->left,query,less);
+    }else{
+      return find_impl(node->right,query,less);
+
+    }
+    
+    
   }
 
   // REQUIRES: item is not already contained in the tree rooted at 'node'
@@ -434,6 +441,9 @@ private:
       ptr->left = nullptr;
       ptr->right = nullptr;
       return ptr;
+    }
+    if(node->datum == item){
+      return node;
     }
     if(less(item,node->datum/*.first if it doesn't work*/)){
       node->left = insert_impl(node->left,item,less);
@@ -548,15 +558,13 @@ private:
     if(!node){
       return nullptr;
     }
-    if(!node->left && !node->right){
-      if(less(val,node->datum)){
-        return node;
-      }
-      return nullptr;
+    if(!less(node->datum,val) && !less(val,node->datum)){
+      return node;
     }
+    
     if(less(node->datum,val)){
       return min_greater_than_impl(node->right,val,less);
-    }else if(less(val,node->datum)){
+    }else{
       return min_greater_than_impl(node->left,val,less);
     }
     

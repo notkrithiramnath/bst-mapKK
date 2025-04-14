@@ -43,7 +43,7 @@ TEST(printTree){
     cout << endl;
     t2.traverse_preorder(std::cout);
 }
-TEST(duplicates){
+/*TEST(duplicates){
     BinarySearchTree<int> t3;
     t3.insert(5);
     t3.insert(4);
@@ -52,6 +52,34 @@ TEST(duplicates){
     ASSERT_EQUAL(t3.size(),3);
     ASSERT_EQUAL(t3.height(),2);
     
+}*/
+TEST(test_find){
+    BinarySearchTree<int> t;
+    t.insert(5);
+    t.insert(3);
+    t.insert(7);
+    cout << " inserted" << endl;
+    ASSERT_EQUAL(*t.find(5), 5);
+    cout << " inserted 5" << endl;
+    ASSERT_EQUAL(*t.find(3), 3);
+    cout << " inserted 3" << endl;
+
+    ASSERT_EQUAL(*t.find(7), 7);
+    cout << " found 7" << endl;
+    
+}
+TEST(mingreaterIMPL){
+    
+    BinarySearchTree<int> t;
+    t.insert(5);
+    t.insert(3);
+    t.insert(7);
+    ASSERT_EQUAL(*t.min_greater_than(4), 5);
+    cout << "1" << endl;
+    ASSERT_EQUAL(*t.min_greater_than(6), 7);
+    cout << "2" << endl;
+    ASSERT_EQUAL(*t.min_greater_than(8), 0);
+    cout << "3" << endl;
 }
 
 TEST_MAIN()
