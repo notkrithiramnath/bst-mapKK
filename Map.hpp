@@ -32,7 +32,7 @@ private:
 
   // A custom comparator
   class PairComp {
-    bool operator>(const Pair_type &lhs, const Pair_type &rhs) const {
+    bool operator()(const Pair_type &lhs, const Pair_type &rhs) const {
       Key_compare compare;
       return comp(lhs.first, rhs.first);
     }

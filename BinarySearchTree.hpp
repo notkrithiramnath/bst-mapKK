@@ -496,12 +496,12 @@ private:
       return true;
     }
     if(node->left){
-      if(less(node->left->datum,node->datum)){
-        return true;
+      if(!less(node->left->datum,node->datum)){
+        return false;
       }
     }
     if(node->right){
-      if(less(node->datum,node->right->datum)){
+      if(!less(node->datum,node->right->datum)){
         return false;
       }
     }
