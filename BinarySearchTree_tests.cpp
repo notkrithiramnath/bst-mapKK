@@ -24,18 +24,12 @@ TEST(test_inserts){
 }
 TEST(printTree){
     BinarySearchTree<int> t;
-    t.insert(22);
-    t.insert(11);
     t.insert(5);
     t.insert(3);
-    t.insert(1);
-    t.insert(4);
-    t.insert(33);
-    t.insert(44);
-    t.insert(55);
-    t.insert(66);
-    t.insert(77);
+    t.insert(7);
     t.traverse_inorder(std::cout);
+    cout << endl;
+    t.traverse_preorder(std::cout);
     cout << endl;
     BinarySearchTree<int> t2;
     t2.insert(8);
@@ -48,6 +42,8 @@ TEST(printTree){
     t2.traverse_inorder(std::cout);
     cout << endl;
     t2.traverse_preorder(std::cout);
+  
+
     
     
 }
