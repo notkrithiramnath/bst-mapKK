@@ -32,6 +32,10 @@ private:
 
   // A custom comparator
   class PairComp {
+    bool operator>(const Pair_type &lhs, const Pair_type &rhs) const {
+      Key_compare compare;
+      return comp(lhs.first, rhs.first);
+    }
   };
 
 public:
@@ -59,7 +63,7 @@ public:
   // you should omit them. A user of the class must be able to create,
   // copy, assign, and destroy Maps.
 
-
+//keerthi sucks
   // EFFECTS : Returns whether this Map is empty.
   bool empty() const;
 
