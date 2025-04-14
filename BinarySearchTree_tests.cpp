@@ -42,9 +42,15 @@ TEST(printTree){
     t2.traverse_inorder(std::cout);
     cout << endl;
     t2.traverse_preorder(std::cout);
-  
-
-    
+}
+TEST(duplicates){
+    BinarySearchTree<int> t3;
+    t3.insert(5);
+    t3.insert(4);
+    t3.insert(6);
+    t3.insert(4);
+    ASSERT_EQUAL(t3.size(),3);
+    ASSERT_EQUAL(t3.height(),2);
     
 }
 
