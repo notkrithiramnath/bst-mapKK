@@ -442,7 +442,7 @@ private:
       ptr->right = nullptr;
       return ptr;
     }
-    if(node->datum == item){
+    if(!less(item,node->datum) && !less(node->datum,item)){
       return node;
     }
     if(less(item,node->datum/*.first if it doesn't work*/)){
