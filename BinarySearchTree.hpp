@@ -366,13 +366,26 @@ private:
   //          tree rooted at 'node'.
   // NOTE:    This function must be tree recursive.
   static Node *copy_nodes_impl(Node *node) {
-    assert(false);
+    if(!node){
+      return nullptr;
+    }
+    Node *newN = new Node;
+    newN->datum = node->datum;
+    newN->left = copy_nodes_impl(node->left);
+    newN->right = copy_nodes_impl(node->right);
+    return newN;
+
   }
 
   // EFFECTS: Frees the memory for all nodes used in the tree rooted at 'node'.
   // NOTE:    This function must be tree recursive.
   static void destroy_nodes_impl(Node *node) {
-    assert(false);
+    if(!node){
+      return;
+    }
+    destroy_nodes_impl(node->left);
+    destroy_nodes_impl(node->right);
+    delete node;
   }
 
   // EFFECTS : Searches the tree rooted at 'node' for an element equivalent

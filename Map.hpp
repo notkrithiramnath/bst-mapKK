@@ -116,6 +116,9 @@ public:
 
 private:
   // Add a BinarySearchTree private member HERE.
+  BinarySearchTree<Pair_type,PairComp> entries;
+  
+
 };
 
 // You may implement member functions below using an "out-of-line" definition
