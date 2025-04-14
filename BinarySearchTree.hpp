@@ -485,7 +485,18 @@ private:
     if(!node){
       return true;
     }
-    
+    if(node->left){
+      if(less(node->left->datum,node->datum)){
+        return true;
+      }
+    }
+    if(node->right){
+      if(less(node->datum,node->right->datum)){
+        return false;
+      }
+    }
+    return check_sorting_invariant_impl(node->left,less) && check_sorting_invariant_impl(node->right,less);
+
   }
 
   // EFFECTS : Traverses the tree rooted at 'node' using an in-order traversal,
@@ -497,7 +508,12 @@ private:
   //       See https://en.wikipedia.org/wiki/Tree_traversal#In-order
   //       for the definition of a in-order traversal.
   static void traverse_inorder_impl(const Node *node, std::ostream &os) {
-    assert(false);
+    if(!node){
+      return;
+    }
+    traverse_inorder_impl(node->left,os);
+    os << node->datum << " ";
+    traverse_inorder_impl(node->right,os);
   }
 
   // EFFECTS : Traverses the tree rooted at 'node' using a pre-order traversal,
