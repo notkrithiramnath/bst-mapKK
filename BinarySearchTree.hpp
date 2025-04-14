@@ -452,6 +452,9 @@ private:
   // HINT: You don't need to compare any elements! Think about the
   //       structure, and where the smallest element lives.
   static Node * min_element_impl(Node *node) {
+    if(!node){
+      return nullptr;
+    }
     if(!node->left){
       return node;
     }
@@ -465,7 +468,13 @@ private:
   // HINT: You don't need to compare any elements! Think about the
   //       structure, and where the largest element lives.
   static Node * max_element_impl(Node *node) {
-    if(!)
+    if(!node->right){
+      return nullptr;
+    }
+    if(!node->right){
+      return node;
+    }
+    return max_element_impl(node);
   }
 
 
@@ -473,7 +482,10 @@ private:
   //          rooted at 'node'.
   // NOTE:    This function must be tree recursive.
   static bool check_sorting_invariant_impl(const Node *node, Compare less) {
-    assert(false);
+    if(!node){
+      return true;
+    }
+    
   }
 
   // EFFECTS : Traverses the tree rooted at 'node' using an in-order traversal,
