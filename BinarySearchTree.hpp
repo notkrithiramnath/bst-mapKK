@@ -401,7 +401,14 @@ private:
   //       Two elements A and B are equivalent if and only if A is
   //       not less than B and B is not less than A.
   static Node * find_impl(Node *node, const T &query, Compare less) {
-    assert(false);
+    if(!node){
+      return nullptr;
+    }
+    if(!less(query,node->datum) && !less(node->datum,query)){
+      return node;
+    }
+    return find_impl(node->left,query,less);
+    return find_impl(node->right,query,less);
   }
 
   // REQUIRES: item is not already contained in the tree rooted at 'node'
@@ -420,7 +427,16 @@ private:
   //       template, NOT according to the < operator. Use the "less"
   //       parameter to compare elements.
   static Node * insert_impl(Node *node, const T &item, Compare less) {
-    assert(false);
+    if(node.empty()){
+      Node *ptr = new Node;
+      return ptr(item);
+    }
+    if(less(item,node-node->datum)){
+      node->left = 
+    }
+    else{
+      node->right = 
+    }
   }
 
   // EFFECTS : Returns a pointer to the Node containing the minimum element
