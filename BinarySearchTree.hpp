@@ -478,13 +478,13 @@ private:
   // HINT: You don't need to compare any elements! Think about the
   //       structure, and where the largest element lives.
   static Node * max_element_impl(Node *node) {
-    if(!node->right){
+    if(!node){
       return nullptr;
     }
     if(!node->right){
       return node;
     }
-    return max_element_impl(node);
+    return max_element_impl(node->right);
   }
 
 

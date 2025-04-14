@@ -80,4 +80,20 @@ TEST(mingreaterIMPL){
     cout << "2" << endl;
     
 }
+TEST(min_element){
+    BinarySearchTree<int> t;
+    t.insert(5);
+    t.insert(3);
+    t.insert(7);
+    ASSERT_EQUAL(*t.min_element(), 3);
+    
+}
+TEST(max_element){
+    BinarySearchTree<int> t;
+    t.insert(5);
+    t.insert(3);
+    t.insert(7);
+    ASSERT_EQUAL(*t.max_element(), 7);
+    
+}
 TEST_MAIN()
