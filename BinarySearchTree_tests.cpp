@@ -179,6 +179,19 @@ TEST(begin_and_end){
     ASSERT_EQUAL(*it,67);
     ASSERT_TRUE(it != itEr);
     
+    BinarySearchTree<int> kk;
+    kk.insert(20);
+    kk.insert(21);
+    kk.insert(22);
+    kk.insert(23);
+    kk.insert(24);
+    int expected = 20;
+    for (auto it4 = kk.begin(); it4 != kk.end(); ++it4) {
+        ASSERT_TRUE(*it4 == expected);
+        expected += 1;
+    }
+
+    
 
 }
 
