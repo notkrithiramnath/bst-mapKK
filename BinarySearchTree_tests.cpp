@@ -177,6 +177,7 @@ TEST(begin_and_end){
     t.insert(23);
     t.begin();
     ASSERT_EQUAL(*it,67);
+    ASSERT_TRUE(it != itEr);
     
 
 }
