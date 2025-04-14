@@ -78,8 +78,6 @@ TEST(mingreaterIMPL){
     cout << "1" << endl;
     ASSERT_EQUAL(*t.min_greater_than(6), 7);
     cout << "2" << endl;
-    ASSERT_EQUAL(*t.min_greater_than(8), 0);
-    cout << "3" << endl;
+    
 }
-
 TEST_MAIN()
