@@ -18,6 +18,7 @@
 #include <cassert>  //assert
 #include <iostream> //ostream
 #include <functional> //less
+#include <algorithm>
 
 // You may add aditional libraries here if needed. You may use any
 // part of the STL except for containers.
@@ -358,7 +359,7 @@ private:
     if(!node){
       return 0;
     }
-    return 1+max(tree_height(node->right), tree_height(node->left));
+    return 1+std::max(height_impl(node->right), height_impl(node->left));
   }
 
   // EFFECTS: Creates and returns a pointer to the root of a new node structure
@@ -427,16 +428,20 @@ private:
   //       template, NOT according to the < operator. Use the "less"
   //       parameter to compare elements.
   static Node * insert_impl(Node *node, const T &item, Compare less) {
-    if(node.empty()){
+    if(!node){
       Node *ptr = new Node;
-      return ptr(item);
+      ptr->datum = item;
+      ptr->left = nullptr;
+      ptr->right = nullptr;
+      return ptr;
     }
-    if(less(item,node-node->datum)){
-      node->left = 
+    if(less(item,node->datum/*.first if it doesn't work*/)){
+      node->left = insert_impl(node->left,item,less);
     }
     else{
-      node->right = 
+      node->right = insert_impl(node->right,item,less);
     }
+    return node;
   }
 
   // EFFECTS : Returns a pointer to the Node containing the minimum element
@@ -447,7 +452,11 @@ private:
   // HINT: You don't need to compare any elements! Think about the
   //       structure, and where the smallest element lives.
   static Node * min_element_impl(Node *node) {
-    assert(false);
+    if(!node->left){
+      return node;
+    }
+    return min_element_impl(node->left);
+    
   }
 
   // EFFECTS : Returns a pointer to the Node containing the maximum element
@@ -456,7 +465,7 @@ private:
   // HINT: You don't need to compare any elements! Think about the
   //       structure, and where the largest element lives.
   static Node * max_element_impl(Node *node) {
-    assert(false);
+    if(!)
   }
 
 

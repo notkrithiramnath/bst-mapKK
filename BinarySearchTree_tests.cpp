@@ -10,6 +10,16 @@ TEST(test_empty) {
 TEST(test_inserts){
     BinarySearchTree<int> t;
     t.insert(22);
+    ASSERT_EQUAL(t.size(), 1);
+    ASSERT_TRUE(t.height() == 1);
+    ASSERT_EQUAL(*t.min_element(),22);
+    t.insert(11);
+    t.insert(33);
+    ASSERT_EQUAL(t.size(), 3);
+    ASSERT_EQUAL(t.height(), 2);
+    ASSERT_EQUAL(*t.min_element(), 11);
+}
+TEST(duplicates){
     
 }
 
