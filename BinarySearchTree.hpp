@@ -558,15 +558,21 @@ private:
     if(!node){
       return nullptr;
     }
-    if(!less(node->datum,val) && !less(val,node->datum)){
-      return node;
+    if(less(val,node->datum)){//if val is less than node->datum
+      //check if left fits criteria better
+      Node* left = min_greater_than_impl(node->left,val,less);
+      if(left){
+        return left;
+      }else{
+        return node;
+      }
+    }else{
+      //go to right side then
+      return min_greater_than_impl(node->right,val,less);
+
     }
     
-    if(less(node->datum,val)){
-      return min_greater_than_impl(node->right,val,less);
-    }else{
-      return min_greater_than_impl(node->left,val,less);
-    }
+    
     
   }
 
