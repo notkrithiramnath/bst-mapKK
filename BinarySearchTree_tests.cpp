@@ -96,4 +96,27 @@ TEST(max_element){
     ASSERT_EQUAL(*t.max_element(), 7);
     
 }
+TEST(plusplusoperator){
+    BinarySearchTree<int> t;
+    t.insert(6);
+    t.insert(3);
+    t.insert(7);
+    auto it = t.begin();
+    ASSERT_EQUAL(*it, 3);
+    ++it;
+    ASSERT_EQUAL(*it, 6);
+    ++it;
+    ASSERT_EQUAL(*it, 7);
+}
+TEST(equalsoperator){
+    BinarySearchTree<int> t;
+    t.insert(6);
+    t.insert(3);
+    t.insert(7);
+    auto it = t.begin();
+    auto it2 = t.begin();
+    ASSERT_TRUE(it == it2);
+    ++it;
+    ASSERT_TRUE(it != it2);
+}
 TEST_MAIN()
