@@ -113,7 +113,14 @@ public:
   //           false. Otherwise, inserts the given element and returns
   //           an iterator to the newly inserted element, along with
   //           the value true.
-  std::pair<Iterator, bool> insert(const Pair_type &val);
+  std::pair<Iterator, bool> insert(const Pair_type &val){
+    if(find(val.first)){//already in
+      return std::pair(find(val.first), false);
+    }else{
+      entries.insert(val);
+      return std::pair(find(val.first), true);
+    }
+  }
 
   // EFFECTS : Returns an iterator to the first key-value pair in this Map.
   Iterator begin() const{
