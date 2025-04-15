@@ -126,10 +126,27 @@ TEST(copyCtor){
     t.insert(7);
     ASSERT_TRUE(t.check_sorting_invariant());
     BinarySearchTree<int> t2(t);
+    ASSERT_EQUAL(t, t2); //checks that copy is equal
+    //checks if copy has the same elements
+    ASSERT_EQUAL(t2.find(6),true);
+    ASSERT_EQUAL(t2.find(3),true);
+    ASSERT_EQUAL(t2.find(7),true); 
     ASSERT_EQUAL(t2.size(), 3);
     ASSERT_EQUAL(t2.height(), 2);
     ASSERT_EQUAL(*t2.min_element(), 3);
     ASSERT_TRUE(t2.check_sorting_invariant());
+    //modify original and make sure copy isn't changed as well
+    t.insert(2);
+    ASSERT_EQUAL(t2.find(2),false);
+    ASSERT_TRUE(t != t2);
+
+    //tests copy of empty tree
+    BinarySearchTree<int> nerds;
+    BinarySearchTree<int> gummy(nerds);
+    ASSERT_EQUAL(nerds,gummy);
+    ASSERT_TRUE(nerds.empty());
+    ASSERT_TRUE(gummy.empty());
+
 }
 TEST(assignment){
     BinarySearchTree<int> t;
