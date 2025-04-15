@@ -32,10 +32,11 @@ private:
 
   // A custom comparator
   class PairComp {
-    bool operator()(const Pair_type &lhs, const Pair_type &rhs) const {
-      Key_compare compare;
-      return compare(lhs.first, rhs.first);
-    }
+    public:
+      bool operator()(const Pair_type &lhs, const Pair_type &rhs) const {
+        Key_compare compare;
+        return compare(lhs.first, rhs.first);
+      }
   };
 
 public:
@@ -103,7 +104,18 @@ public:
   //           that element. This ensures the proper value-initialization is done.
   //
   // HINT: http://www.cplusplus.com/reference/map/map/operator[]/
-  Value_type& operator[](const Key_type& k);
+  Value_type& operator[](const Key_type& k){
+    auto it = find(k);
+    if(it!=end()){
+      return it->second;
+    }else{
+      Pair_type toPut(k, Value_type());
+      auto answer = insert(toPut);
+      return answer.first->second;
+    }
+  }
+  
+  
 
   // MODIFIES: this
   // EFFECTS : Inserts the given element into this Map if the given key
@@ -114,7 +126,8 @@ public:
   //           an iterator to the newly inserted element, along with
   //           the value true.
   std::pair<Iterator, bool> insert(const Pair_type &val){
-    if(find(val.first)){//already in
+    auto it = find(val.first);
+    if(it!=end()){//already in
       return std::pair(find(val.first), false);
     }else{
       entries.insert(val);
