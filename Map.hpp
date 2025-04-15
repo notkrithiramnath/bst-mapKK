@@ -34,7 +34,7 @@ private:
   class PairComp {
     bool operator()(const Pair_type &lhs, const Pair_type &rhs) const {
       Key_compare compare;
-      return comp(lhs.first, rhs.first);
+      return compare(lhs.first, rhs.first);
     }
   };
 
