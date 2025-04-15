@@ -142,7 +142,7 @@ TEST(copyCtor){
     ASSERT_EQUAL(t4.size(), 0);
     t4.insert(1);
     ASSERT_EQUAL(t3.size(), 2);
-    ASSERT_EQUAL(t3.min_element(), 1);
+    ASSERT_EQUAL(*t3.min_element(), 1);
 
 }
 TEST(assignment){
