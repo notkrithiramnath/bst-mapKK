@@ -118,6 +118,21 @@ TEST(equalsoperator){
     ASSERT_TRUE(it == it2);
     ++it;
     ASSERT_TRUE(it != it2);
+
+    //empty trees = 
+    BinarySearchTree<int> fp;
+    BinarySearchTree<int> dp;
+    ASSERT_TRUE(fp == dp);
+    //empty tree != non empty tree
+    fp.insert(34);
+    fp.insert(45);
+    fp.insert(22);
+    ASSERT_FALSE(fp == dp);
+    //trees with same elements but diff structures !=
+    dp.insert(22);
+    dp.insert(34);
+    dp.insert(45);
+    ASSERT_FALSE(fp == dp);
 }
 TEST(copyCtor){
     BinarySearchTree<int> t;
@@ -146,6 +161,13 @@ TEST(copyCtor){
     ASSERT_EQUAL(nerds,gummy);
     ASSERT_TRUE(nerds.empty());
     ASSERT_TRUE(gummy.empty());
+    //tests assignment of og to copy
+    nerds.insert(16);
+    nerds.insert(30);
+    BinarySearchTree<int> clusters(nerds);
+    clusters.insert(42);
+    clusters = nerds;
+    ASSERT_EQUAL(nerds,clusters);
 
 }
 TEST(assignment){
@@ -243,23 +265,6 @@ TEST(height){
     ASSERT_EQUAL(mj.height(), 5); //checks height when both sides r balanced
     mj.insert(99); 
     ASSERT_EQUAL(mj.height(),6); //checks height when one side is longer.
-
-}
-TEST(==_operator){
-    //empty trees = 
-    BinarySearchTree<int> fp;
-    BinarySearchTree<int> dp;
-    ASSERT_TRUE(fp == dp);
-    //empty tree != non empty tree
-    fp.insert(34);
-    fp.insert(45);
-    fp.insert(22);
-    ASSERT_FALSE(fp == dp);
-    //trees with same elements but diff structures !=
-    dp.insert(22);
-    dp.insert(34);
-    dp.insert(45);
-    ASSERT_FALSE(fp == dp);
 
 }
 TEST(find){
