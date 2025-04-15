@@ -21,6 +21,19 @@ TEST(test_inserts){
     ASSERT_EQUAL(t.height(), 2);
     ASSERT_EQUAL(*t.min_element(), 11);
     ASSERT_TRUE(t.check_sorting_invariant());
+
+    //insert a crap ton of inserts 
+    BinarySearchTree<int> fatTree;
+    vector<int> adds = {9,18,27,36,45,54,63,72,81,90,99};
+    for(int i  = 0; i < adds; i++){
+        int branch = adds[i];
+        fatTree.insert(branch);
+    }
+    ASSERT_FALSE(fatTree.empty());
+    ASSERT_EQUAL(fatTree.height(), 11); //checks height for right skewed tree
+    ASSERT_EQUAL(fatTree.size(),11);
+    ASSERT_EQUAL(*fatTree.min_element(), 9);
+    ASSERT_EQUAL(*fatTree.max_element(),99);
 }
 TEST(printTree){
     BinarySearchTree<int> t;
@@ -43,16 +56,6 @@ TEST(printTree){
     cout << endl;
     t2.traverse_preorder(std::cout);
 }
-/*TEST(duplicates){
-    BinarySearchTree<int> t3;
-    t3.insert(5);
-    t3.insert(4);
-    t3.insert(6);
-    t3.insert(4);
-    ASSERT_EQUAL(t3.size(),3);
-    ASSERT_EQUAL(t3.height(),2);
-    
-}*/
 TEST(test_find){
     BinarySearchTree<int> t;
     t.insert(5);
@@ -119,8 +122,9 @@ TEST(equalsoperator){
 TEST(copyCtor){
     BinarySearchTree<int> t;
     t.insert(6);
-    t.insert(3);
+    t.insert(3); 
     t.insert(7);
+    ASSERT_TRUE(t.check_sorting_invariant());
     BinarySearchTree<int> t2(t);
     ASSERT_EQUAL(t2.size(), 3);
     ASSERT_EQUAL(t2.height(), 2);
@@ -190,9 +194,55 @@ TEST(begin_and_end){
     }
 }
 TEST(check_sorting_invariant){
+    //no duplicates
     BinarySearchTree<int> pi;
     ASSERT_EQUAL(pi.check_sorting_invariant(), true);
-    
+    ASSERT_EQUAL(pi.insert(69),true);
+    ASSERT_EQUAL(pi.insert(45),true);
+    ASSERT_EQUAL(pi.insert(98),true);
+    ASSERT_EQUAL(pi.insert(45),false);
+    ASSERT_EQUAL(pi.size(), 3);
+
+    //check inserts done in reverse order still satisfies invariant
+    BinarySearchTree<int> frog;
+    frog.insert(96);
+    frog.insert(84);
+    frog.insert(72);
+    frog.insert(60);
+    frog.insert(48);
+    ASSERT_TRUE(frog.check_sorting_invariant());
+}
+TEST(height){
+    BinarySearchTree<int> mj;
+    mj.insert(54);
+    mj.insert(63);
+    mj.insert(45);
+    mj.insert(72);
+    mj.insert(36);
+    mj.insert(81);
+    mj.insert(27);
+    mj.insert(90);
+    mj.insert(18);
+    ASSERT_EQUAL(mj.height(), 5); //checks height when both sides r balanced
+    mj.insert(99); 
+    ASSERT_EQUAL(mj.height(),6); //checks height when one side is longer.
+
+}
+TEST(==_operator){
+    //empty trees = 
+    BinarySearchTree<int> fp;
+    BinarySearchTree<int> dp;
+    ASSERT_TRUE(fp == dp);
+    //empty tree != non empty tree
+    fp.insert(34);
+    fp.insert(45);
+    fp.insert(22);
+    ASSERT_FALSE(fp == dp);
+    //trees with same elements but diff structures !=
+    dp.insert(22);
+    dp.insert(34);
+    dp.insert(45);
+    ASSERT_FALSE(fp == dp);
 
 }
 TEST(find){
