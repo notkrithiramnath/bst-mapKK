@@ -505,7 +505,8 @@ private:
         return false;
       }
     }
-    return check_sorting_invariant_impl(node->left,less) && check_sorting_invariant_impl(node->right,less);
+    return check_sorting_invariant_impl(node->left,less) 
+    && check_sorting_invariant_impl(node->right,less);
 
   }
 
