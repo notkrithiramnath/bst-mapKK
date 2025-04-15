@@ -158,6 +158,7 @@ TEST(empty){
     ASSERT_FALSE(t.empty());
     BinarySearchTree<int> t2;
     ASSERT_TRUE(t2.empty());
+    
 }
 TEST(begin_and_end){
     //empty tree
@@ -193,6 +194,21 @@ TEST(begin_and_end){
 
     
 
+}
+TEST(find){
+    BinarySearchTree<int> t;
+    t.insert(6);
+    t.insert(69);
+    t.insert(67);
+    auto it = t.find(6);
+    ASSERT_EQUAL(*it, 6);
+    auto it2 = t.find(69);
+    ASSERT_EQUAL(*it2, 69);
+    auto it3 = t.find(67);
+    ASSERT_EQUAL(*it3, 67);
+    BinarySearchTree<int> t2;
+    auto it4 = t2.find(6);
+    ASSERT_EQUAL(it4, t2.end());
 }
 
 
