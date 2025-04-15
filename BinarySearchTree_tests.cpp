@@ -63,13 +63,10 @@ TEST(test_find){
     cout << " inserted 5" << endl;
     ASSERT_EQUAL(*t.find(3), 3);
     cout << " inserted 3" << endl;
-
     ASSERT_EQUAL(*t.find(7), 7);
     cout << " found 7" << endl;
-    
 }
 TEST(mingreaterIMPL){
-    
     BinarySearchTree<int> t;
     t.insert(5);
     t.insert(3);
@@ -190,7 +187,10 @@ TEST(begin_and_end){
         ASSERT_TRUE(*it4 == expected);
         expected += 1;
     }
-
+}
+TEST(check_sorting_invariant){
+    BinarySearchTree<int> pi;
+    ASSERT_EQUAL(pi.check_sorting_invariant(), true);
     
 
 }
