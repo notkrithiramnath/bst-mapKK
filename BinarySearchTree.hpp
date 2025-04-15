@@ -496,16 +496,17 @@ private:
       return true;
     }
     if(node->left){
-      if(less(node->left->datum,node->datum)){
-        return true;
-      }
-    }
-    if(node->right){
-      if(less(node->datum,node->right->datum)){
+      if(!less(node->left->datum,node->datum)){
         return false;
       }
     }
-    return check_sorting_invariant_impl(node->left,less) && check_sorting_invariant_impl(node->right,less);
+    if(node->right){
+      if(!less(node->datum,node->right->datum)){
+        return false;
+      }
+    }
+    return check_sorting_invariant_impl(node->left,less) 
+    && check_sorting_invariant_impl(node->right,less);
 
   }
 

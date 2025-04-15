@@ -2,9 +2,9 @@
 #include "unit_test_framework.hpp"
 
 
-TEST(test_stub) {
-    // Add your tests here
-    ASSERT_TRUE(true);
+TEST(test_stuff) {
+    Map<int, double> nums;
+    
 }
 
 TEST_MAIN()
