@@ -106,6 +106,21 @@ TEST(max_element){
     t.insert(3);
     t.insert(7);
     ASSERT_EQUAL(*t.max_element(), 7);
+    BinarySearchTree<int> t2;
+    ASSERT_EQUAL(t2.max_element(), t2.end());
+    t2.insert(10);
+    t2.insert(9);
+    t2.insert(8);
+    ASSERT_EQUAL(*t2.max_element(), 10);
+    //one element
+    BinarySearchTree<int> t3;
+    t3.insert(1);
+    ASSERT_EQUAL(*t3.max_element(), 1);
+    BinarySearchTree<int> t4;
+    t4.insert(10);
+    t4.insert(20);
+    t4.insert(30);
+    ASSERT_EQUAL(*t4.max_element(), 30);
     
 }
 TEST(plusplusoperator){
