@@ -143,6 +143,15 @@ TEST(copyCtor){
     t4.insert(1);
     ASSERT_EQUAL(t3.size(), 2);
     ASSERT_EQUAL(*t3.min_element(), 1);
+    //diff structures
+    BinarySearchTree<int> t5;
+    t5.insert(1);
+    t5.insert(2);
+    t5.insert(3);
+    t5.insert(4);
+    BinarySearchTree<int> t6(t5);
+    ASSERT_EQUAL(t6.size(), 4);
+    ASSERT_EQUAL(t6.height(), 4);
 
 }
 TEST(assignment){
