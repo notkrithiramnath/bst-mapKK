@@ -262,6 +262,14 @@ TEST(find){
     ASSERT_EQUAL(it4, t2.end());
     ASSERT_TRUE(t.check_sorting_invariant())
 }
+TEST(checksorting){
+    BinarySearchTree<int> t;
+    t.insert(6);
+    t.insert(69);
+    t.insert(67);
+    ASSERT_TRUE(t.check_sorting_invariant())
+
+}
 
 
 
