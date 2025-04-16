@@ -92,6 +92,10 @@ TEST(min_element){
     t2.insert(2);
     t2.insert(3);
     ASSERT_EQUAL(*t2.min_element(), 1);
+    //one element
+    BinarySearchTree<int> t3;
+    t3.insert(1);
+    ASSERT_EQUAL(*t3.min_element(), 1);
 
 
     
