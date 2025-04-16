@@ -206,7 +206,7 @@ TEST(begin_and_end){
         ASSERT_TRUE(*it4 == expected);
         expected += 1;
     }
-
+    ASSERT_TRUE(kk.check_sorting_invariant())
     
 
 }
@@ -224,6 +224,7 @@ TEST(find){
     BinarySearchTree<int> t2;
     auto it4 = t2.find(6);
     ASSERT_EQUAL(it4, t2.end());
+    ASSERT_TRUE(t.check_sorting_invariant())
 }
 
 
