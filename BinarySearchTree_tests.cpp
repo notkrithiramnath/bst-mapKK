@@ -86,6 +86,14 @@ TEST(min_element){
     t.insert(3);
     t.insert(7);
     ASSERT_EQUAL(*t.min_element(), 3);
+    BinarySearchTree<int> t2;
+    ASSERT_EQUAL(t2.min_element(), t2.end());
+    t2.insert(1);
+    t2.insert(2);
+    t2.insert(3);
+    ASSERT_EQUAL(*t2.min_element(), 1);
+
+
     
 }
 TEST(max_element){
