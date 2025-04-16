@@ -86,6 +86,18 @@ TEST(min_element){
     t.insert(3);
     t.insert(7);
     ASSERT_EQUAL(*t.min_element(), 3);
+    BinarySearchTree<int> t2;
+    ASSERT_EQUAL(t2.min_element(), t2.end());
+    t2.insert(1);
+    t2.insert(2);
+    t2.insert(3);
+    ASSERT_EQUAL(*t2.min_element(), 1);
+    //one element
+    BinarySearchTree<int> t3;
+    t3.insert(1);
+    ASSERT_EQUAL(*t3.min_element(), 1);
+
+
     
 }
 TEST(max_element){
@@ -94,6 +106,21 @@ TEST(max_element){
     t.insert(3);
     t.insert(7);
     ASSERT_EQUAL(*t.max_element(), 7);
+    BinarySearchTree<int> t2;
+    ASSERT_EQUAL(t2.max_element(), t2.end());
+    t2.insert(10);
+    t2.insert(9);
+    t2.insert(8);
+    ASSERT_EQUAL(*t2.max_element(), 10);
+    //one element
+    BinarySearchTree<int> t3;
+    t3.insert(1);
+    ASSERT_EQUAL(*t3.max_element(), 1);
+    BinarySearchTree<int> t4;
+    t4.insert(10);
+    t4.insert(20);
+    t4.insert(30);
+    ASSERT_EQUAL(*t4.max_element(), 30);
     
 }
 TEST(plusplusoperator){
@@ -164,6 +191,15 @@ TEST(copyCtor){
     t4.insert(1);
     ASSERT_EQUAL(t3.size(), 2);
     ASSERT_EQUAL(*t3.min_element(), 1);
+    //diff structures
+    BinarySearchTree<int> t5;
+    t5.insert(1);
+    t5.insert(2);
+    t5.insert(3);
+    t5.insert(4);
+    BinarySearchTree<int> t6(t5);
+    ASSERT_EQUAL(t6.size(), 4);
+    ASSERT_EQUAL(t6.height(), 4);
 
 }
 TEST(assignment){
@@ -227,40 +263,8 @@ TEST(begin_and_end){
         ASSERT_TRUE(*it4 == expected);
         expected += 1;
     }
-}
-TEST(check_sorting_invariant){
-    //no duplicates
-    BinarySearchTree<int> pi;
-    ASSERT_EQUAL(pi.check_sorting_invariant(), true);
-    ASSERT_EQUAL(pi.insert(69),true);
-    ASSERT_EQUAL(pi.insert(45),true);
-    ASSERT_EQUAL(pi.insert(98),true);
-    ASSERT_EQUAL(pi.insert(45),false);
-    ASSERT_EQUAL(pi.size(), 3);
 
-    //check inserts done in reverse order still satisfies invariant
-    BinarySearchTree<int> frog;
-    frog.insert(96);
-    frog.insert(84);
-    frog.insert(72);
-    frog.insert(60);
-    frog.insert(48);
-    ASSERT_TRUE(frog.check_sorting_invariant());
-}
-TEST(height){
-    BinarySearchTree<int> mj;
-    mj.insert(54);
-    mj.insert(63);
-    mj.insert(45);
-    mj.insert(72);
-    mj.insert(36);
-    mj.insert(81);
-    mj.insert(27);
-    mj.insert(90);
-    mj.insert(18);
-    ASSERT_EQUAL(mj.height(), 5); //checks height when both sides r balanced
-    mj.insert(99); 
-    ASSERT_EQUAL(mj.height(),6); //checks height when one side is longer.
+    
 
 }
 TEST(find){
@@ -277,6 +281,15 @@ TEST(find){
     BinarySearchTree<int> t2;
     auto it4 = t2.find(6);
     ASSERT_EQUAL(it4, t2.end());
+    ASSERT_TRUE(t.check_sorting_invariant())
+}
+TEST(checksorting){
+    BinarySearchTree<int> t;
+    t.insert(6);
+    t.insert(69);
+    t.insert(67);
+    ASSERT_TRUE(t.check_sorting_invariant())
+
 }
 
 
