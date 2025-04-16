@@ -135,6 +135,7 @@ TEST(equalsoperator){
     ASSERT_FALSE(fp == dp);
 }
 TEST(copyCtor){
+    //tree w elements
     BinarySearchTree<int> t;
     t.insert(6);
     t.insert(3); 
@@ -150,24 +151,19 @@ TEST(copyCtor){
     ASSERT_EQUAL(t2.height(), 2);
     ASSERT_EQUAL(*t2.min_element(), 3);
     ASSERT_TRUE(t2.check_sorting_invariant());
-    //modify original and make sure copy isn't changed as well
-    t.insert(2);
-    ASSERT_EQUAL(t2.find(2),false);
-    ASSERT_TRUE(t != t2);
-
-    //tests copy of empty tree
-    BinarySearchTree<int> nerds;
-    BinarySearchTree<int> gummy(nerds);
-    ASSERT_EQUAL(nerds,gummy);
-    ASSERT_TRUE(nerds.empty());
-    ASSERT_TRUE(gummy.empty());
-    //tests assignment of og to copy
-    nerds.insert(16);
-    nerds.insert(30);
-    BinarySearchTree<int> clusters(nerds);
-    clusters.insert(42);
-    clusters = nerds;
-    ASSERT_EQUAL(nerds,clusters);
+    //empty
+    BinarySearchTree<int> t3;
+    BinarySearchTree<int> t4(t3);
+    ASSERT_EQUAL(t4.size(), 0);
+    ASSERT_EQUAL(t4.height(), 0);
+    ASSERT_TRUE(t4.empty());
+    //now change copied and other
+    t3.insert(69);
+    t3.insert(1);
+    ASSERT_EQUAL(t4.size(), 0);
+    t4.insert(1);
+    ASSERT_EQUAL(t3.size(), 2);
+    ASSERT_EQUAL(*t3.min_element(), 1);
 
 }
 TEST(assignment){
