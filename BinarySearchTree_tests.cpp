@@ -8,6 +8,7 @@ using namespace std;
 TEST(test_empty) {
     BinarySearchTree<int> tree;
     ASSERT_TRUE(tree.empty());
+    ASSERT_EQUAL(tree.height(), 0u);
 }
 TEST(test_inserts){
     BinarySearchTree<int> t;
@@ -22,6 +23,7 @@ TEST(test_inserts){
     ASSERT_EQUAL(*t.min_element(), 11);
     ASSERT_TRUE(t.check_sorting_invariant());
 }
+
 TEST(printTree){
     BinarySearchTree<int> t;
     t.insert(5);
@@ -209,7 +211,7 @@ TEST(empty){
     ASSERT_FALSE(t.empty());
     BinarySearchTree<int> t2;
     ASSERT_TRUE(t2.empty());
-    
+    ASSERT_EQUAL(t2.height(),0u);
 }
 TEST(begin_and_end){
     //empty tree
@@ -262,7 +264,43 @@ TEST(find){
     ASSERT_EQUAL(it4, t2.end());
     ASSERT_TRUE(t.check_sorting_invariant())
 }
-
+TEST(check_sorting_invariant){
+    // empty tree is okay
+    BinarySearchTree<int> tree1;
+    ASSERT_TRUE(tree1.check_sorting_invariant());
+    //single node is okay
+    tree1.insert(15);
+    ASSERT_TRUE(tree1.check_sorting_invariant());
+    //branches sorting order is okay
+    tree1.insert(10);
+    tree1.insert(9);
+    tree1.insert(11);
+    ASSERT_TRUE(tree1.check_sorting_invariant());
+    //duplicates is not okay
+    tree1.insert(10);
+    ASSERT_FALSE(tree1.check_sorting_invariant());
+    BinarySearchTree<int> tree2;
+    //valid sorting order
+    tree2.insert(17);
+    tree2.insert(14);
+    tree2.insert(19);
+    ASSERT_TRUE(tree2.check_sorting_invariant());
+    //imbalanced branches are okay
+    BinarySearchTree<int> tree3;
+    tree3.insert(9);
+    tree3.insert(7);
+    tree3.insert(5);
+    tree3.insert(3);
+    tree3.insert(1);
+    ASSERT_TRUE(tree3.check_sorting_invariant());
+    BinarySearchTree<int> tree4;
+    tree4.insert(14);
+    tree4.insert(15);
+    tree4.insert(16);
+    tree4.insert(17);
+    tree4.insert(18);
+    ASSERT_TRUE(tree4.check_sorting_invariant());
+}
 
 
 TEST_MAIN()
