@@ -43,16 +43,6 @@ TEST(printTree){
     cout << endl;
     t2.traverse_preorder(std::cout);
 }
-/*TEST(duplicates){
-    BinarySearchTree<int> t3;
-    t3.insert(5);
-    t3.insert(4);
-    t3.insert(6);
-    t3.insert(4);
-    ASSERT_EQUAL(t3.size(),3);
-    ASSERT_EQUAL(t3.height(),2);
-    
-}*/
 TEST(test_find){
     BinarySearchTree<int> t;
     t.insert(5);
@@ -242,9 +232,7 @@ TEST(begin_and_end){
         ASSERT_TRUE(*it4 == expected);
         expected += 1;
     }
-    ASSERT_TRUE(kk.check_sorting_invariant())
-    
-
+    ASSERT_TRUE(kk.check_sorting_invariant());
 }
 TEST(find){
     BinarySearchTree<int> t;
@@ -272,6 +260,34 @@ TEST(checksortinvariant){
     ASSERT_TRUE(t2.check_sorting_invariant());
     t2.insert(1);
     ASSERT_TRUE(t2.check_sorting_invariant());
+    auto it = t.begin();
+    *it = 100;
+    ASSERT_FALSE(t.check_sorting_invariant());
+    BinarySearchTree<int> t3;
+    t3.insert(18);
+    t3.insert(13);
+    t3.insert(23);
+    t3.insert(21);
+    t3.insert(28);
+    ASSERT_TRUE(t3.check_sorting_invariant());
+    auto it4 = t3.find(28);
+    ASSERT_FALSE(t3.end() == it4);
+    *it4 = 15;
+    ASSERT_FALSE(t3.check_sorting_invariant());
+    BinarySearchTree<int> t4;
+    t4.insert(63);
+    t4.insert(45);
+    t4.insert(90);
+    auto it1 = t4.find(45);
+    *it1 = 72;
+    ASSERT_FALSE(t4.check_sorting_invariant());
+    BinarySearchTree<int> t5;
+    t5.insert(27);
+    t5.insert(18);
+    t5.insert(36);
+    auto it2 = t5.find(36);
+    *it2 = 20;
+    ASSERT_FALSE(t5.check_sorting_invariant());
 }
 
 
