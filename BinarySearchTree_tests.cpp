@@ -288,6 +288,37 @@ TEST(checksortinvariant){
     auto it2 = t5.find(36);
     *it2 = 20;
     ASSERT_FALSE(t5.check_sorting_invariant());
+    BinarySearchTree<int> t6;
+    t6.insert(54);
+    t6.insert(27);
+    t6.insert(45);
+    t6.insert(36);
+    ASSERT_TRUE(t6.check_sorting_invariant());
+    auto it3 = t6.find(45);
+    *it3 = 55;
+    ASSERT_TRUE(t6.check_sorting_invariant());
+    BinarySearchTree<int> mc;
+    mc.insert(22);
+    mc.insert(21);
+    auto it5 = mc.find(21);
+    *it5 = 23;
+    ASSERT_TRUE(t6.check_sorting_invariant());
+    BinarySearchTree<int> am;
+    am.insert(108);
+    am.insert(54);
+    am.insert(27);
+    am.insert(72);
+    auto it6 = am.find(27);
+    *it6 = 117;  
+    ASSERT_FALSE(am.check_sorting_invariant());
+    BinarySearchTree<int> kr;
+    kr.insert(7);
+    kr.insert(9);
+    kr.insert(8); 
+    auto it7 = kr.find(8);
+    *it7 = 4;  
+    ASSERT_TRUE(kr.check_sorting_invariant());
+    
 }
 
 
